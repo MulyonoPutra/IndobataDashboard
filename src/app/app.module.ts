@@ -12,7 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { ClientsComponent } from './features/presentation/clients/clients.component';
 
 
 @NgModule({
@@ -29,7 +28,7 @@ import { ClientsComponent } from './features/presentation/clients/clients.compon
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    ClientsComponent
+
   ],
   providers: [],
   bootstrap: [AppComponent]

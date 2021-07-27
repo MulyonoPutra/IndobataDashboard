@@ -12,6 +12,10 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ClientsComponent } from 'src/app/features/presentation/clients/clients.component';
+import { CategoryComponent } from 'src/app/features/presentation/category/category.component';
+import { FeedbackComponent } from 'src/app/features/presentation/feedback/feedback.component';
+import { ProductComponent } from 'src/app/features/presentation/product/product.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -21,15 +25,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TablesComponent,
     IconsComponent,
-    MapsComponent
-  ]
+    MapsComponent,
+    ClientsComponent,
+    ProductComponent,
+    CategoryComponent,
+    FeedbackComponent,
+  ],
 })
-
 export class AdminLayoutModule {}
