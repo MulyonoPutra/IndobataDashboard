@@ -27,13 +27,16 @@ import { ProductDetailsComponent } from 'src/app/features/presentation/product/p
 import { ProductUpdatesComponent } from 'src/app/features/presentation/product/product-updates/product-updates.component';
 import { CategoryRepository } from 'src/app/features/core/repositories/category.repository';
 import { CategoryServiceImpl } from 'src/app/features/core/services/impl/category.service-impl';
+import { ClientsRepository } from 'src/app/features/core/repositories/clients.repository';
+import { ClientsServiceImpl } from 'src/app/features/core/services/impl/clients.service-impl';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule,
@@ -60,6 +63,7 @@ import { CategoryServiceImpl } from 'src/app/features/core/services/impl/categor
 
   providers: [
     { provide: CategoryRepository, useClass: CategoryServiceImpl },
+    { provide: ClientsRepository, useClass: ClientsServiceImpl },
   ],
 })
 export class AdminLayoutModule {}

@@ -7,6 +7,7 @@ import { ClientsRepository } from "../../repositories/clients.repository";
 
 @Injectable()
 export class ClientsServiceImpl extends ClientsRepository {
+  
   private baseEndpoint = "http://localhost:8080/";
   public clients: Clients;
 
@@ -15,11 +16,11 @@ export class ClientsServiceImpl extends ClientsRepository {
   }
 
   getAllClients(): Observable<Clients[]> {
-    return this.http.get<any>(this.baseEndpoint + "api/card");
+    return this.http.get<any>(this.baseEndpoint + "api/clients");
   }
 
-  addClients(card: Clients): Observable<any> {
-    return this.http.post(this.baseEndpoint + "api/card", card);
+  addClients(clients: Clients): Observable<any> {
+    return this.http.post(this.baseEndpoint + "api/clients", clients);
   }
 
   updateClients(clients: Clients): Observable<any> {

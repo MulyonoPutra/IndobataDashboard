@@ -3,8 +3,8 @@ export interface Clients {
   name?: string;
   address?: string;
   url?: string;
-  imagesContentType?: string;
   images?: string;
+  imagesContentType?: string;
 }
 
 export class IClients implements Clients {
@@ -13,7 +13,7 @@ export class IClients implements Clients {
     public name?: string,
     public address?: string,
     public url?: string,
-    public imagesContentType?: string,
     public images?: string,
+    public imagesContentType?: string,
   ) {}
 }
