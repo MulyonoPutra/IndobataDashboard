@@ -16,6 +16,14 @@ import { ClientsComponent } from 'src/app/features/presentation/clients/clients.
 import { CategoryComponent } from 'src/app/features/presentation/category/category.component';
 import { FeedbackComponent } from 'src/app/features/presentation/feedback/feedback.component';
 import { ProductComponent } from 'src/app/features/presentation/product/product.component';
+import { CategoryDetailsComponent } from 'src/app/features/presentation/category/category-details/category-details.component';
+import { CategoryUpdatesComponent } from 'src/app/features/presentation/category/category-updates/category-updates.component';
+import { ClientsDetailsComponent } from 'src/app/features/presentation/clients/clients-details/clients-details.component';
+import { ClientsUpdatesComponent } from 'src/app/features/presentation/clients/clients-updates/clients-updates.component';
+import { FeedbackDetailsComponent } from 'src/app/features/presentation/feedback/feedback-details/feedback-details.component';
+import { FeedbackUpdatesComponent } from 'src/app/features/presentation/feedback/feedback-updates/feedback-updates.component';
+import { ProductDetailsComponent } from 'src/app/features/presentation/product/product-details/product-details.component';
+import { ProductUpdatesComponent } from 'src/app/features/presentation/product/product-updates/product-updates.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -37,6 +45,14 @@ import { ProductComponent } from 'src/app/features/presentation/product/product.
     ProductComponent,
     CategoryComponent,
     FeedbackComponent,
+    ProductDetailsComponent,
+    ProductUpdatesComponent,
+    FeedbackUpdatesComponent,
+    FeedbackDetailsComponent,
+    ClientsUpdatesComponent,
+    ClientsDetailsComponent,
+    CategoryDetailsComponent,
+    CategoryUpdatesComponent,
   ],
 })
 export class AdminLayoutModule {}

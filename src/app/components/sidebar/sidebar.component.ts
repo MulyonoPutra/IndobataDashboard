@@ -17,48 +17,42 @@ export const ROUTES: RouteInfo[] = [
   {
     path: "/clients",
     title: "Clients",
-    icon: "ni-tv-2 text-primary",
+    icon: "ni-user-run text-yellow",
     class: "",
   },
   {
     path: "/product",
     title: "Product",
-    icon: "ni-tv-2 text-primary",
+    icon: "ni-box-2 text-red",
     class: "",
   },
   {
     path: "/feedback",
     title: "Feedback",
-    icon: "ni-tv-2 text-primary",
+    icon: "ni-collection text-pink",
     class: "",
   },
   {
     path: "/category",
     title: "Category",
-    icon: "ni-tv-2 text-primary",
+    icon: "ni-bullet-list-67 text-primary",
     class: "",
   },
-  { path: "/icons", title: "Icons", icon: "ni-planet text-blue", class: "" },
-  { path: "/maps", title: "Maps", icon: "ni-pin-3 text-orange", class: "" },
-  {
-    path: "/user-profile",
-    title: "User profile",
-    icon: "ni-single-02 text-yellow",
-    class: "",
-  },
-  {
-    path: "/tables",
-    title: "Tables",
-    icon: "ni-bullet-list-67 text-red",
-    class: "",
-  },
-  { path: "/login", title: "Login", icon: "ni-key-25 text-info", class: "" },
-  {
-    path: "/register",
-    title: "Register",
-    icon: "ni-circle-08 text-pink",
-    class: "",
-  },
+  // { path: "/icons", title: "Icons", icon: "ni-planet text-blue", class: "" },
+  // { path: "/maps", title: "Maps", icon: "ni-pin-3 text-orange", class: "" },
+  // {
+  //   path: "/user-profile",
+  //   title: "User profile",
+  //   icon: "ni-single-02 text-yellow",
+  //   class: "",
+  // },
+  // { path: "/login", title: "Login", icon: "ni-key-25 text-info", class: "" },
+  // {
+  //   path: "/register",
+  //   title: "Register",
+  //   icon: "ni-circle-08 text-pink",
+  //   class: "",
+  // },
 ];
 
 @Component({
