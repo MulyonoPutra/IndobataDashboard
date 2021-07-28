@@ -11,18 +11,26 @@
   <div class="row">
     <div class="col">
       <div class="card shadow">
-        <div class="card-header border-0">
-
-        </div>
+        <div class="card-header border-0"></div>
         <div class="container">
-          <form>
+          <form
+            name="editForm"
+            role="form"
+            novalidate
+            (ngSubmit)="save()"
+            [formGroup]="editForm"
+          >
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <input
                     type="text"
                     class="form-control form-control-alternative"
-                    id="name"
+                    type="text"
+                    name="name"
+                    id="field_name"
+                    data-cy="name"
+                    formControlName="name"
                     placeholder="Name"
                   />
                 </div>
@@ -39,8 +47,23 @@
               </div>
             </div>
             <div class="d-flex justify-content-end">
-              <button type="button" class="btn btn-warning">Cancel</button>
-              <button type="button" class="btn btn-success">Save</button>
+              <button
+                type="button"
+                class="btn btn-warning"
+                (click)="previousState()"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                type="submit"
+                id="save-entity"
+                data-cy="entityCreateSaveButton"
+                [disabled]="editForm.invalid || isSaving"
+              >
+                Save
+              </button>
             </div>
             &nbsp;
           </form>

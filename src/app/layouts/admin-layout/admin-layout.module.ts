@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
+
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { IconsComponent } from '../../pages/icons/icons.component';
@@ -32,7 +33,7 @@ import { CategoryServiceImpl } from 'src/app/features/core/services/impl/categor
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
+    FormsModule,ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule,
