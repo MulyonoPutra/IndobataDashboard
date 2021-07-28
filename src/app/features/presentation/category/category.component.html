@@ -121,15 +121,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let category of categories">
 
                 <td>
-                  $2,500 USD
+                  {{ category.name }}
                 </td>
                 <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i> pending
-                  </span>
+                 {{ category.description }}
                 </td>
 
 
