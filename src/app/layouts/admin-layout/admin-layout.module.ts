@@ -29,6 +29,8 @@ import { CategoryRepository } from 'src/app/features/core/repositories/category.
 import { CategoryServiceImpl } from 'src/app/features/core/services/impl/category.service-impl';
 import { ClientsRepository } from 'src/app/features/core/repositories/clients.repository';
 import { ClientsServiceImpl } from 'src/app/features/core/services/impl/clients.service-impl';
+import { FeedbackRepository } from 'src/app/features/core/repositories/feedback.repository';
+import { FeedbackServiceImpl } from 'src/app/features/core/services/impl/feedback.service-impl';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -64,6 +66,7 @@ import { ClientsServiceImpl } from 'src/app/features/core/services/impl/clients.
   providers: [
     { provide: CategoryRepository, useClass: CategoryServiceImpl },
     { provide: ClientsRepository, useClass: ClientsServiceImpl },
+    { provide: FeedbackRepository, useClass: FeedbackServiceImpl },
   ],
 })
 export class AdminLayoutModule {}
