@@ -1,3 +1,4 @@
+import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Feedback } from "../domain/entities/feedback";
@@ -15,5 +16,8 @@ export class FeedbackService extends FeedbackRepository {
   addFeedback(Feedback: Feedback): Observable<any> {
     return this.feedbackRepository.addFeedback(Feedback);
   }
-  
+
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.feedbackRepository.delete(id);
+  }
 }

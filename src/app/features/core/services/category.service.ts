@@ -35,4 +35,8 @@ export class CategoryService extends CategoryRepository {
   query(): Observable<EntityArrayResponseType> {
     throw new Error("Method not implemented.");
   }
+
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.categoryRepository.delete(id);
+  }
 }

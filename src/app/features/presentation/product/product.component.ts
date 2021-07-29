@@ -9,7 +9,6 @@ import { DataUtils } from '../../core/services/utils/data-utils.service';
   styleUrls: ["./product.component.css"],
 })
 export class ProductComponent implements OnInit {
-  
   products: Product[] = [];
 
   constructor(
@@ -30,5 +29,12 @@ export class ProductComponent implements OnInit {
 
   openFile(base64String: string, contentType: string | null | undefined): void {
     return this.dataUtils.openFile(base64String, contentType);
+  }
+
+  confirmDelete(id: number): void {
+    this.productService.delete(id).subscribe(() => {
+      console.log("Deleted!");
+      this.findAllProduct();
+    });
   }
 }

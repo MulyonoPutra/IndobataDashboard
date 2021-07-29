@@ -1,3 +1,4 @@
+import { HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Search } from "../domain/dto/search";
 import { Product } from "../domain/entities/product";
@@ -14,4 +15,6 @@ export abstract class ProductRepository {
   abstract getProductById(id: number): Observable<any>;
 
   abstract getProductByCategoryId(categoryId: number): Observable<any>;
+
+  abstract delete(id: number): Observable<HttpResponse<{}>>;
 }

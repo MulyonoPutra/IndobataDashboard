@@ -157,7 +157,7 @@
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
-              <tr >
+              <tr>
                 <th scope="col">Product Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Sku</th>
@@ -169,12 +169,45 @@
             </thead>
             <tbody>
               <tr *ngFor="let product of products">
-                <td>{{product.productName}}</td>
-                <td>{{product.description}}</td>
-                <td>{{product.sku}}</td>
-                <td>{{product.size}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.category_product?.name}}</td>
+                <td>{{ product.productName }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.sku }}</td>
+                <td>{{ product.size }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.category_product?.name }}</td>
+                <td class="text-right">
+                  <div class="btn-group">
+                    <button
+                      type="submit"
+                      [routerLink]="['/post', post.id, 'view']"
+                      class="btn btn-info btn-sm"
+                      data-cy="entityDetailsButton"
+                    >
+                      <fa-icon icon="eye"></fa-icon>
+                      <span class="d-none d-md-inline">View</span>
+                    </button>
+
+                    <button
+                      type="submit"
+                      [routerLink]="['/product', product.id, 'edit']"
+                      class="btn btn-primary btn-sm"
+                      data-cy="entityEditButton"
+                    >
+                      <fa-icon icon="pencil-alt"></fa-icon>
+                      <span class="d-none d-md-inline">Edit</span>
+                    </button>
+
+                    <button
+                      type="submit"
+                      (click)="confirmDelete(product.id)"
+                      class="btn btn-danger btn-sm"
+                      data-cy="entityDeleteButton"
+                    >
+                      <fa-icon icon="times"></fa-icon>
+                      <span class="d-none d-md-inline">Delete</span>
+                    </button>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>

@@ -10,9 +10,7 @@ import { FeedbackRepository } from '../../core/repositories/feedback.repository'
 export class FeedbackComponent implements OnInit {
   feedback: Feedback[] = [];
 
-  constructor(
-    private feedbackService: FeedbackRepository
-  ) {}
+  constructor(private feedbackService: FeedbackRepository) {}
 
   ngOnInit(): void {
     this.loadFeedback();
@@ -22,6 +20,13 @@ export class FeedbackComponent implements OnInit {
     this.feedback = [];
     this.feedbackService.getAllFeedback().subscribe((value: Feedback[]) => {
       this.feedback = value;
+    });
+  }
+
+  confirmDelete(id: number): void {
+    this.feedbackService.delete(id).subscribe(() => {
+      console.log("Deleted!");
+      this.loadFeedback();
     });
   }
 }

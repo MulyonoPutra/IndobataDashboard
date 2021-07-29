@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { first, map, mergeMap } from "rxjs/operators";
@@ -56,5 +56,11 @@ export class ProductServiceImpl extends ProductRepository {
         this.httpOptions
       )
       .pipe(map((response: any) => response));
+  }
+
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.baseEndpoint}api/product/${id}`, {
+      observe: "response",
+    });
   }
 }

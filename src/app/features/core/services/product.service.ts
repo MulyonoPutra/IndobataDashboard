@@ -34,4 +34,8 @@ export class ProductService extends ProductRepository {
   getProductByCategoryId(categoryId: number): Observable<any> {
     return this.productRepository.getProductByCategoryId(categoryId);
   }
+
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.productRepository.delete(id);
+  }
 }

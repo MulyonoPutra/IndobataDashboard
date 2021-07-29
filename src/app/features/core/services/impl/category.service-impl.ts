@@ -18,7 +18,6 @@ import { createRequestOption } from "../../utility/request-utils";
 export type EntityArrayResponseType = HttpResponse<Category[]>;
 @Injectable()
 export class CategoryServiceImpl extends CategoryRepository {
-
   private baseEndpoint = "http://localhost:8080/";
   public category: Category;
 
@@ -31,30 +30,25 @@ export class CategoryServiceImpl extends CategoryRepository {
   }
 
   addCategory(categories: Category): Observable<any> {
-    return this.http.post(
-      this.baseEndpoint + "api/category",
-      categories
-    );
+    return this.http.post(this.baseEndpoint + "api/category", categories);
   }
 
   search(search: Search): Observable<any> {
     throw new Error("Method not implemented.");
   }
 
-  private handleError(res: HttpErrorResponse | any) {
-    console.error(res.error || res.body.error);
-    return observableThrowError(res.error || "Server error");
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.baseEndpoint}api/category/${id}`, {
+      observe: "response",
+    });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<Category[]>(
-      this.baseEndpoint + "api/category",
-      {
-        params: options,
-        observe: "response",
-      }
-    );
+    return this.http.get<Category[]>(this.baseEndpoint + "api/category", {
+      params: options,
+      observe: "response",
+    });
   }
 
   addCategoryToCollectionIfMissing(

@@ -129,22 +129,37 @@
                 <td>
                  {{ category.description }}
                 </td>
-
-
                 <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"
-                      ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class="dropdown-menu-right
-                      dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another
-                        action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something
-                        else here</a>
-                    </div>
+                  <div class="btn-group">
+                    <button
+                      type="submit"
+                      [routerLink]="['/post', post.id, 'view']"
+                      class="btn btn-info btn-sm"
+                      data-cy="entityDetailsButton"
+                    >
+                      <fa-icon icon="eye"></fa-icon>
+                      <span class="d-none d-md-inline">View</span>
+                    </button>
+
+                    <button
+                      type="submit"
+                      [routerLink]="['/post', post.id, 'edit']"
+                      class="btn btn-primary btn-sm"
+                      data-cy="entityEditButton"
+                    >
+                      <fa-icon icon="pencil-alt"></fa-icon>
+                      <span class="d-none d-md-inline">Edit</span>
+                    </button>
+
+                    <button
+                      type="submit"
+                      (click)="confirmDelete(category.id)"
+                      class="btn btn-danger btn-sm"
+                      data-cy="entityDeleteButton"
+                    >
+                      <fa-icon icon="times"></fa-icon>
+                      <span class="d-none d-md-inline">Delete</span>
+                    </button>
                   </div>
                 </td>
               </tr>

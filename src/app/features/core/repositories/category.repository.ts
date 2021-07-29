@@ -5,7 +5,6 @@ import { Category } from "../domain/entities/category";
 
 export type EntityArrayResponseType = HttpResponse<Category[]>;
 export abstract class CategoryRepository {
-
   abstract getAllCategory(): Observable<Category[]>;
 
   abstract addCategory(categories: Category): Observable<any>;
@@ -13,5 +12,6 @@ export abstract class CategoryRepository {
   abstract search(search: Search): Observable<any>;
 
   abstract query(): Observable<EntityArrayResponseType>;
-  
+
+  abstract delete(id: number): Observable<HttpResponse<{}>>;
 }

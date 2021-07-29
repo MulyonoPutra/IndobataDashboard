@@ -31,7 +31,6 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getAllCategory().subscribe((value: Category[]) => {
       this.categories = value;
       console.log(value);
-
     });
   }
 
@@ -50,5 +49,12 @@ export class CategoryComponent implements OnInit {
   postDetailsRoute(products: any): void {
     this.product = products;
     this.router.navigateByUrl("/category-details/" + products.id);
+  }
+
+  confirmDelete(id: number): void {
+    this.categoryService.delete(id).subscribe(() => {
+      console.log("Deleted!");
+      this.findAllCategory();
+    });
   }
 }

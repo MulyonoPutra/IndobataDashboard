@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -20,5 +20,11 @@ export class FeedbackServiceImpl extends FeedbackRepository {
 
   addFeedback(feedback: Feedback): Observable<any> {
     return this.http.post(this.baseEndpoint + "api/feedback", feedback);
+  }
+
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.baseEndpoint}api/feedback/${id}`, {
+      observe: "response",
+    });
   }
 }
