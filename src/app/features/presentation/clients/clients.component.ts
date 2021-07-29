@@ -30,4 +30,11 @@ export class ClientsComponent implements OnInit {
   openFile(base64String: string, contentType: string | null | undefined): void {
     return this.dataUtils.openFile(base64String, contentType);
   }
+
+  confirmDelete(id: number): void {
+    this.clientService.delete(id).subscribe(() => {
+      console.log('Deleted!');
+      this.findAllClients();
+    });
+  }
 }

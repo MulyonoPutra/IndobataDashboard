@@ -8,7 +8,6 @@ import { ClientsRepository } from "../repositories/clients.repository";
 
 @Injectable()
 export class ClientsService extends ClientsRepository {
-  
   constructor(private clientsRepository: ClientsRepository) {
     super();
   }
@@ -31,5 +30,7 @@ export class ClientsService extends ClientsRepository {
     return this.clientsRepository.search(search);
   }
 
-
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.clientsRepository.delete(id);
+  }
 }
