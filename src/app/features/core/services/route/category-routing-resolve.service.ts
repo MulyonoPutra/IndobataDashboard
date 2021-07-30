@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpResponse } from "@angular/common/http";
 import { Resolve, ActivatedRouteSnapshot, Router } from "@angular/router";
 import { Observable, of, EMPTY } from "rxjs";
-import { mergeMap } from "rxjs/operators";import { ICategory, Category } from "../domain/entities/category";
-import { CategoryServiceImpl } from "./impl/category.service-impl";
+import { mergeMap } from "rxjs/operators";import { ICategory, Category } from "../../domain/entities/category";
+import { CategoryServiceImpl } from "../impl/category.service-impl";
 
 
 @Injectable({ providedIn: "root" })

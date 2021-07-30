@@ -10,6 +10,7 @@ import { CategoryRepository } from '../../core/repositories/category.repository'
   styleUrls: ["./category.component.css"],
 })
 export class CategoryComponent implements OnInit {
+  
   public currentCategoryId: number = 1;
 
   public categories: Category[] = [];
