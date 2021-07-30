@@ -8,10 +8,10 @@ import {
   Observable,
   throwError as observableThrowError,
 } from "rxjs";
+import { BaseEndpoint } from "../../constants/base-endpoint";
 
 @Injectable()
 export class FeedbackServiceImpl extends FeedbackRepository {
-  private baseEndpoint = "http://localhost:8080/";
   public feedback: Feedback;
 
   constructor(private http: HttpClient) {
@@ -19,15 +19,15 @@ export class FeedbackServiceImpl extends FeedbackRepository {
   }
 
   getAllFeedback(): Observable<Feedback[]> {
-    return this.http.get<any>(this.baseEndpoint + "api/feedback");
+    return this.http.get<any>(BaseEndpoint.FEEDBACK);
   }
 
   addFeedback(feedback: Feedback): Observable<any> {
-    return this.http.post(this.baseEndpoint + "api/feedback", feedback);
+    return this.http.post(BaseEndpoint.FEEDBACK, feedback);
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.baseEndpoint}api/feedback/${id}`, {
+    return this.http.delete(`${BaseEndpoint.FEEDBACK}/${id}`, {
       observe: "response",
     });
   }

@@ -5,6 +5,7 @@ import {
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { first, mergeMap, Observable, throwError as observableThrowError } from "rxjs";
+import { BaseEndpoint } from "../../constants/base-endpoint";
 import { EntityArrayResponseCategoryType, EntityResponseCategoryType } from "../../constants/entity-response.type";
 
 import { Search } from "../../domain/dto/search";
@@ -19,7 +20,7 @@ import { createRequestOption } from "../../utility/request-utils";
 
 @Injectable()
 export class CategoryServiceImpl extends CategoryRepository {
-  private baseEndpoint = "http://localhost:8080/";
+  
   public category: Category;
 
   constructor(private http: HttpClient) {
@@ -27,7 +28,7 @@ export class CategoryServiceImpl extends CategoryRepository {
   }
 
   getAllCategory(): Observable<Category[]> {
-    return this.http.get<any>(this.baseEndpoint + "api/category");
+    return this.http.get<any>(BaseEndpoint.CATEGORY);
   }
 
   getCategoryById(id: number): Observable<any> {
@@ -38,7 +39,7 @@ export class CategoryServiceImpl extends CategoryRepository {
   }
 
   addCategory(categories: Category): Observable<any> {
-    return this.http.post(this.baseEndpoint + "api/category", categories);
+    return this.http.post(BaseEndpoint.CATEGORY, categories);
   }
 
   search(search: Search): Observable<any> {
@@ -46,30 +47,31 @@ export class CategoryServiceImpl extends CategoryRepository {
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.baseEndpoint}api/category/${id}`, {
+    return this.http.delete(`${BaseEndpoint.CATEGORY}/${id}`, {
       observe: "response",
     });
   }
 
   update(category: Category): Observable<EntityResponseCategoryType> {
     return this.http.put<Category>(
-      `${this.baseEndpoint}api/category/${
-        getCategoryIdentifier(category) as number
-      }`,
+      `${BaseEndpoint.CATEGORY}/${getCategoryIdentifier(category) as number}`,
       category,
       { observe: "response" }
     );
   }
 
   find(id: number): Observable<EntityResponseCategoryType> {
-    return this.http.get<ICategory>(`${this.baseEndpoint}api/category/${id}`, {
-      observe: "response",
-    });
+    return this.http.get<ICategory>(
+      `${BaseEndpoint.CATEGORY}/${id}`,
+      {
+        observe: "response",
+      }
+    );
   }
 
   query(req?: any): Observable<EntityArrayResponseCategoryType> {
     const options = createRequestOption(req);
-    return this.http.get<Category[]>(this.baseEndpoint + "api/category", {
+    return this.http.get<Category[]>(BaseEndpoint.CATEGORY, {
       params: options,
       observe: "response",
     });

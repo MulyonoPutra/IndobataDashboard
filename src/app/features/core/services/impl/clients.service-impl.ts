@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { first, mergeMap, Observable } from "rxjs";
+import { BaseEndpoint } from "../../constants/base-endpoint";
 import { EntityResponseClientsType } from "../../constants/entity-response.type";
 import { Search } from "../../domain/dto/search";
 import { Clients, getClientsIdentifier, IClients } from "../../domain/entities/clients";
@@ -8,8 +9,7 @@ import { ClientsRepository } from "../../repositories/clients.repository";
 
 @Injectable()
 export class ClientsServiceImpl extends ClientsRepository {
-  
-  private baseEndpoint = "http://localhost:8080/";
+
   public clients: Clients;
 
   constructor(private http: HttpClient) {
@@ -17,16 +17,16 @@ export class ClientsServiceImpl extends ClientsRepository {
   }
 
   getAllClients(): Observable<Clients[]> {
-    return this.http.get<any>(this.baseEndpoint + "api/clients");
+    return this.http.get<any>(BaseEndpoint.CLIENTS);
   }
 
   addClients(clients: Clients): Observable<any> {
-    return this.http.post(this.baseEndpoint + "api/clients", clients);
+    return this.http.post(BaseEndpoint.CLIENTS, clients);
   }
 
   update(clients: Clients): Observable<EntityResponseClientsType> {
     return this.http.put<Clients>(
-      `${this.baseEndpoint}api/clients/${
+      `${BaseEndpoint.CLIENTS}/${
         getClientsIdentifier(clients) as number
       }`,
       clients,
@@ -35,7 +35,7 @@ export class ClientsServiceImpl extends ClientsRepository {
   }
 
   find(id: number): Observable<EntityResponseClientsType> {
-    return this.http.get<IClients>(`${this.baseEndpoint}api/clients/${id}`, {
+    return this.http.get<IClients>(`${BaseEndpoint.CLIENTS}/${id}`, {
       observe: "response",
     });
   }
@@ -52,7 +52,7 @@ export class ClientsServiceImpl extends ClientsRepository {
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.baseEndpoint}api/clients/${id}`, {
+    return this.http.delete(`${BaseEndpoint.CLIENTS}/${id}`, {
       observe: "response",
     });
   }
