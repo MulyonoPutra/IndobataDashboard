@@ -17,7 +17,7 @@ import { EventManager } from "src/app/features/core/services/utils/event-manager
   styleUrls: ["./category-updates.component.css"],
 })
 export class CategoryUpdatesComponent implements OnInit {
-  
+
   public isLoggedIn = false;
 
   public isSaving = false;
@@ -55,7 +55,6 @@ export class CategoryUpdatesComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const category = this.createFromForm();
-    //this.subscribeToSaveResponse(this.categoryService.addCategory(category));
     if (category.id !== undefined) {
       this.subscribeToSaveResponse(this.categoryService.update(category));
     } else {

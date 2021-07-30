@@ -2,7 +2,6 @@ import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
 import { IconsComponent } from "../../pages/icons/icons.component";
-import { MapsComponent } from "../../pages/maps/maps.component";
 import { UserProfileComponent } from "../../pages/user-profile/user-profile.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { ClientsComponent } from './../../features/presentation/clients/clients.component';
@@ -17,18 +16,43 @@ import { CategoryUpdatesComponent } from "src/app/features/presentation/category
 import { CategoryDetailsComponent } from "src/app/features/presentation/category/category-details/category-details.component";
 import { FeedbackUpdatesComponent } from "src/app/features/presentation/feedback/feedback-updates/feedback-updates.component";
 import { FeedbackDetailsComponent } from "src/app/features/presentation/feedback/feedback-details/feedback-details.component";
-import { CategoryRoutingResolveService } from "src/app/features/core/services/category-routing-resolve.service";
+import { CategoryRoutingResolveService } from "src/app/features/core/services/route/category-routing-resolve.service";
+import { ClientsRoutingResolveService } from "src/app/features/core/services/route/clients-routing-resolve.service";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
   { path: "user-profile", component: UserProfileComponent },
   { path: "tables", component: TablesComponent },
   { path: "icons", component: IconsComponent },
-  { path: "maps", component: MapsComponent },
 
-  { path: "clients", component: ClientsComponent },
-  { path: "clients-update", component: ClientsUpdatesComponent },
-  { path: "clients-details/:id", component: ClientsDetailsComponent },
+  {
+    path: "clients",
+    component: ClientsComponent,
+    resolve: {
+      clients: ClientsRoutingResolveService,
+    },
+  },
+  {
+    path: "clients-update/:id/edit",
+    component: ClientsUpdatesComponent,
+    resolve: {
+      clients: ClientsRoutingResolveService,
+    },
+  },
+  {
+    path: "clients-new",
+    component: ClientsUpdatesComponent,
+    resolve: {
+      clients: ClientsRoutingResolveService,
+    },
+  },
+  {
+    path: "clients-details/:id",
+    component: ClientsDetailsComponent,
+    resolve: {
+      clients: ClientsRoutingResolveService,
+    },
+  },
 
   { path: "product", component: ProductComponent },
   { path: "product-update/:id/edit", component: ProductUpdatesComponent },

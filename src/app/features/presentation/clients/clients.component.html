@@ -147,7 +147,7 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <a
-            [routerLink]="['/clients-update']"
+            [routerLink]="['/clients-new']"
             class="btn btn-success btn-lg active justify-content-end"
             role="button"
             aria-pressed="true"
@@ -203,7 +203,6 @@
                       data-cy="entityDetailsButton"
                       (click)="clientsDetailsRoute(client)"
                     >
-                      <fa-icon icon="eye"></fa-icon>
                       <span class="d-none d-md-inline">View</span>
                     </button>
 
@@ -211,9 +210,8 @@
                       type="submit"
                       class="btn btn-primary btn-sm"
                       data-cy="entityEditButton"
-
+                      [routerLink]="['/clients-update', client.id, 'edit']"
                     >
-                      <fa-icon icon="pencil-alt"></fa-icon>
                       <span class="d-none d-md-inline">Edit</span>
                     </button>
 

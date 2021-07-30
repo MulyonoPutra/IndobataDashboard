@@ -17,3 +17,8 @@ export class IClients implements Clients {
     public imagesContentType?: string,
   ) {}
 }
+
+
+export function getClientsIdentifier(clients: IClients): number | undefined {
+  return clients.id;
+}

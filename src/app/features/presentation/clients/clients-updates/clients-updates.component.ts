@@ -15,6 +15,7 @@ import { EventManager, EventWithContent } from 'src/app/features/core/services/u
   styleUrls: ["./clients-updates.component.css"],
 })
 export class ClientsUpdatesComponent implements OnInit, OnDestroy {
+  
   public isLoggedIn = false;
 
   public isSaving = false;
@@ -38,8 +39,8 @@ export class ClientsUpdatesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ post }) => {
-      this.updateForm(post);
+    this.activatedRoute.data.subscribe(({ clients }) => {
+      this.updateForm(clients);
     });
   }
 
@@ -89,12 +90,11 @@ export class ClientsUpdatesComponent implements OnInit, OnDestroy {
   save(): void {
     this.isSaving = true;
     const clients = this.createFromForm();
-    this.subscribeToSaveResponse(this.clientsService.addClients(clients));
-    // if (post.id !== undefined) {
-    //   this.subscribeToSaveResponse(this.postService.updatePost(post));
-    // } else {
-    //   this.subscribeToSaveResponse(this.postService.addPost(post));
-    // }
+    if (clients.id !== undefined) {
+      this.subscribeToSaveResponse(this.clientsService.update(clients));
+    } else {
+      this.subscribeToSaveResponse(this.clientsService.addClients(clients));
+    }
   }
 
   protected subscribeToSaveResponse(
