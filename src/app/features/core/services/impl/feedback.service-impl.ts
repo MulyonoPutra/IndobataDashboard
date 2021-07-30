@@ -1,9 +1,13 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { environment } from "src/environments/environment";
 import { Feedback } from "../../domain/entities/feedback";
 import { FeedbackRepository } from "../../repositories/feedback.repository";
+import {
+  first,
+  mergeMap,
+  Observable,
+  throwError as observableThrowError,
+} from "rxjs";
 
 @Injectable()
 export class FeedbackServiceImpl extends FeedbackRepository {
@@ -26,5 +30,12 @@ export class FeedbackServiceImpl extends FeedbackRepository {
     return this.http.delete(`${this.baseEndpoint}api/feedback/${id}`, {
       observe: "response",
     });
+  }
+
+  getFeedbackById(id: number): Observable<any> {
+    return this.getAllFeedback().pipe(
+      mergeMap((result) => result),
+      first((feedback) => feedback.id === id)
+    );
   }
 }

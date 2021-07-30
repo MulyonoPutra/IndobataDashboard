@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Feedback } from '../../core/domain/entities/feedback';
 import { FeedbackRepository } from '../../core/repositories/feedback.repository';
 
@@ -10,7 +11,12 @@ import { FeedbackRepository } from '../../core/repositories/feedback.repository'
 export class FeedbackComponent implements OnInit {
   feedback: Feedback[] = [];
 
-  constructor(private feedbackService: FeedbackRepository) {}
+  public mFeedback: Feedback;
+
+  constructor(
+    private feedbackService: FeedbackRepository,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadFeedback();
@@ -28,5 +34,10 @@ export class FeedbackComponent implements OnInit {
       console.log("Deleted!");
       this.loadFeedback();
     });
+  }
+
+  feedbackDetailsRoute(feedback: any): void {
+    this.mFeedback = feedback;
+    this.router.navigateByUrl("/feedback-details/" + feedback.id);
   }
 }

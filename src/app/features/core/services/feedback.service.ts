@@ -6,6 +6,7 @@ import { FeedbackRepository } from "../repositories/feedback.repository";
 
 @Injectable()
 export class FeedbackService extends FeedbackRepository {
+  
   constructor(private feedbackRepository: FeedbackRepository) {
     super();
   }
@@ -20,4 +21,9 @@ export class FeedbackService extends FeedbackRepository {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.feedbackRepository.delete(id);
   }
+
+  getFeedbackById(id: number): Observable<any> {
+    return this.feedbackRepository.getFeedbackById(id);
+  }
+
 }
