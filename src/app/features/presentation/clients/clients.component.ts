@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Clients } from "../../core/domain/entities/clients";
+import { Clients, IClients } from "../../core/domain/entities/clients";
 import { ClientsRepository } from "../../core/repositories/clients.repository";
 import { DataUtils } from "../../core/services/utils/data-utils.service";
 
@@ -10,7 +10,6 @@ import { DataUtils } from "../../core/services/utils/data-utils.service";
   styleUrls: ["./clients.component.css"],
 })
 export class ClientsComponent implements OnInit {
-  
   clients: Clients[] = [];
 
   public client: Clients;
@@ -30,6 +29,14 @@ export class ClientsComponent implements OnInit {
     this.clientService.getAllClients().subscribe((value: Clients[]) => {
       this.clients = value;
     });
+  }
+
+  trackId(index: number, item: IClients): number {
+    return item.id!;
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
   }
 
   openFile(base64String: string, contentType: string | null | undefined): void {

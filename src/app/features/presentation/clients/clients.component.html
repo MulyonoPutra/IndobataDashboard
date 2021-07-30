@@ -165,7 +165,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let client of clients">
+              <tr
+                *ngFor="let client of clients; let i = index; trackBy: trackId"
+              >
                 <td>
                   {{ client.name }}
                 </td>
@@ -221,7 +223,6 @@
                       class="btn btn-danger btn-sm"
                       data-cy="entityDeleteButton"
                     >
-                      <fa-icon icon="times"></fa-icon>
                       <span class="d-none d-md-inline">Delete</span>
                     </button>
                   </div>
