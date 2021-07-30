@@ -17,6 +17,7 @@ import { CategoryUpdatesComponent } from "src/app/features/presentation/category
 import { CategoryDetailsComponent } from "src/app/features/presentation/category/category-details/category-details.component";
 import { FeedbackUpdatesComponent } from "src/app/features/presentation/feedback/feedback-updates/feedback-updates.component";
 import { FeedbackDetailsComponent } from "src/app/features/presentation/feedback/feedback-details/feedback-details.component";
+import { CategoryRoutingResolveService } from "src/app/features/core/services/category-routing-resolve.service";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -30,12 +31,37 @@ export const AdminLayoutRoutes: Routes = [
   { path: "clients-details/:id", component: ClientsDetailsComponent },
 
   { path: "product", component: ProductComponent },
-  { path: "product-update", component: ProductUpdatesComponent },
+  { path: "product-update/:id/edit", component: ProductUpdatesComponent },
   { path: "product-details/:id", component: ProductDetailsComponent },
 
-  { path: "category", component: CategoryComponent },
-  { path: "category-update", component: CategoryUpdatesComponent },
-  { path: "category-details/:id", component: CategoryDetailsComponent },
+  {
+    path: "category",
+    component: CategoryComponent,
+    resolve: {
+      category: CategoryRoutingResolveService,
+    },
+  },
+  {
+    path: "category-update/:id/edit",
+    component: CategoryUpdatesComponent,
+    resolve: {
+      category: CategoryRoutingResolveService,
+    },
+  },
+  {
+    path: "category-new",
+    component: CategoryUpdatesComponent,
+    resolve: {
+      category: CategoryRoutingResolveService,
+    },
+  },
+  {
+    path: "category-details/:id",
+    component: CategoryDetailsComponent,
+    resolve: {
+      category: CategoryRoutingResolveService,
+    },
+  },
 
   { path: "feedback", component: FeedbackComponent },
   { path: "feedback-update", component: FeedbackUpdatesComponent },

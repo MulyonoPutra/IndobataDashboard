@@ -4,17 +4,24 @@ import {
   HttpResponse,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { first, mergeMap, Observable, throwError as observableThrowError } from "rxjs";
+import {
+  first,
+  mergeMap,
+  Observable,
+  throwError as observableThrowError,
+} from "rxjs";
 
 import { Search } from "../../domain/dto/search";
 import {
   Category,
   getCategoryIdentifier,
+  ICategory,
 } from "../../domain/entities/category";
 import { CategoryRepository } from "../../repositories/category.repository";
 import { isPresent } from "../../utility/operators";
 import { createRequestOption } from "../../utility/request-utils";
 
+export type EntityResponseType = HttpResponse<ICategory>;
 export type EntityArrayResponseType = HttpResponse<Category[]>;
 @Injectable()
 export class CategoryServiceImpl extends CategoryRepository {
@@ -46,6 +53,22 @@ export class CategoryServiceImpl extends CategoryRepository {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.baseEndpoint}api/category/${id}`, {
+      observe: "response",
+    });
+  }
+
+  update(category: Category): Observable<EntityResponseType> {
+    return this.http.put<Category>(
+      `${this.baseEndpoint}api/category/${
+        getCategoryIdentifier(category) as number
+      }`,
+      category,
+      { observe: "response" }
+    );
+  }
+
+  find(id: number): Observable<EntityResponseType> {
+    return this.http.get<ICategory>(`${this.baseEndpoint}api/category/${id}`, {
       observe: "response",
     });
   }

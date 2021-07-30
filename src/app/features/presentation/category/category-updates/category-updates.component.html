@@ -23,14 +23,6 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
-          <div *ngIf="editForm.get('title')!.invalid && (editForm.get('title')!.dirty || editForm.get('title')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('title')?.errors?.required"> This field is required. </small>
-          </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
                   <input
                     type="text"
                     class="form-control form-control-alternative"
@@ -41,6 +33,20 @@
                     formControlName="name"
                     placeholder="Name"
                   />
+                  <div
+                    *ngIf="
+                      editForm.get('name')!.invalid &&
+                      (editForm.get('name')!.dirty ||
+                        editForm.get('name')!.touched)
+                    "
+                  >
+                    <small
+                      class="form-text text-danger"
+                      *ngIf="editForm.get('name')?.errors?.required"
+                    >
+                      This field is required.
+                    </small>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">

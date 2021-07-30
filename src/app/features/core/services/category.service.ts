@@ -2,8 +2,8 @@ import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Search } from "../domain/dto/search";
-import { Category } from "../domain/entities/category";
-import { CategoryRepository } from "../repositories/category.repository";
+import { Category, ICategory } from "../domain/entities/category";
+import { CategoryRepository, EntityResponseType } from "../repositories/category.repository";
 
 export type EntityArrayResponseType = HttpResponse<Category[]>;
 @Injectable()
@@ -17,6 +17,10 @@ export class CategoryService extends CategoryRepository {
   }
   getAllCategory(): Observable<Category[]> {
     return this.categoryRepository.getAllCategory();
+  }
+
+  update(category: ICategory): Observable<EntityResponseType> {
+    return this.categoryRepository.update(category);
   }
 
   addCategoryToCollectionIfMissing(

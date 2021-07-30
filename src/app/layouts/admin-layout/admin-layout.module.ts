@@ -33,6 +33,7 @@ import { FeedbackRepository } from "src/app/features/core/repositories/feedback.
 import { FeedbackServiceImpl } from "src/app/features/core/services/impl/feedback.service-impl";
 import { ProductRepository } from "src/app/features/core/repositories/product.repository";
 import { ProductServiceImpl } from "src/app/features/core/services/impl/product.service-impl";
+import { CategoryRoutingResolveService } from "src/app/features/core/services/category-routing-resolve.service";
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ProductServiceImpl } from "src/app/features/core/services/impl/product.
 
   providers: [
     { provide: CategoryServiceImpl },
+    { provide: CategoryRoutingResolveService },
     { provide: CategoryRepository, useClass: CategoryServiceImpl },
     { provide: ClientsRepository, useClass: ClientsServiceImpl },
     { provide: FeedbackRepository, useClass: FeedbackServiceImpl },

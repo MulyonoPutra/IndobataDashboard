@@ -147,7 +147,7 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <a
-            [routerLink]="['/category-update']"
+             [routerLink]="['/category-new']"
             class="btn btn-success btn-lg active justify-content-end"
             role="button"
             aria-pressed="true"
@@ -193,6 +193,7 @@
                       type="submit"
                       class="btn btn-primary btn-sm"
                       data-cy="entityEditButton"
+                      [routerLink]="['/category-update', category.id, 'edit']"
                     >
                       <fa-icon icon="pencil-alt"></fa-icon>
                       <span class="d-none d-md-inline">Edit</span>

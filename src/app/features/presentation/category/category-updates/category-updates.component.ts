@@ -1,12 +1,15 @@
-import { HttpResponse } from '@angular/common/http';
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, finalize } from 'rxjs';
-import { Category, ICategory } from 'src/app/features/core/domain/entities/category';
-import { CategoryRepository } from 'src/app/features/core/repositories/category.repository';
-import { DataUtils } from 'src/app/features/core/services/utils/data-utils.service';
-import { EventManager } from 'src/app/features/core/services/utils/event-manager.service';
+import { HttpResponse } from "@angular/common/http";
+import { Component, ElementRef, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { Observable, finalize } from "rxjs";
+import {
+  Category,
+  ICategory,
+} from "src/app/features/core/domain/entities/category";
+import { CategoryRepository } from "src/app/features/core/repositories/category.repository";
+import { DataUtils } from "src/app/features/core/services/utils/data-utils.service";
+import { EventManager } from "src/app/features/core/services/utils/event-manager.service";
 
 @Component({
   selector: "app-category-updates",
@@ -14,6 +17,7 @@ import { EventManager } from 'src/app/features/core/services/utils/event-manager
   styleUrls: ["./category-updates.component.css"],
 })
 export class CategoryUpdatesComponent implements OnInit {
+  
   public isLoggedIn = false;
 
   public isSaving = false;
@@ -34,7 +38,11 @@ export class CategoryUpdatesComponent implements OnInit {
     protected activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ category }) => {
+      this.updateForm(category);
+    });
+  }
 
   ngOnDestroy(): void {
     window.location.reload();
@@ -47,12 +55,12 @@ export class CategoryUpdatesComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const category = this.createFromForm();
-    this.subscribeToSaveResponse(this.categoryService.addCategory(category));
-    // if (cards.id !== undefined) {
-    //   this.subscribeToSaveResponse(this.cardsService.updateCards(cards));
-    // } else {
-    //   this.subscribeToSaveResponse(this.cardsService.addCards(cards));
-    // }
+    //this.subscribeToSaveResponse(this.categoryService.addCategory(category));
+    if (category.id !== undefined) {
+      this.subscribeToSaveResponse(this.categoryService.update(category));
+    } else {
+      this.subscribeToSaveResponse(this.categoryService.addCategory(category));
+    }
   }
 
   protected subscribeToSaveResponse(
@@ -67,7 +75,6 @@ export class CategoryUpdatesComponent implements OnInit {
   protected onSaveSuccess(): void {
     this.previousState();
   }
-
 
   protected onSaveError(): void {
     // Api for inheritance.
