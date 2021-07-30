@@ -24,20 +24,20 @@ export const AdminLayoutRoutes: Routes = [
   { path: "tables", component: TablesComponent },
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapsComponent },
-  
+
   { path: "clients", component: ClientsComponent },
   { path: "clients-update", component: ClientsUpdatesComponent },
-  { path: "clients-details", component: ClientsDetailsComponent },
+  { path: "clients-details/:id", component: ClientsDetailsComponent },
 
   { path: "product", component: ProductComponent },
   { path: "product-update", component: ProductUpdatesComponent },
-  { path: "product-details", component: ProductDetailsComponent },
+  { path: "product-details/:id", component: ProductDetailsComponent },
 
   { path: "category", component: CategoryComponent },
   { path: "category-update", component: CategoryUpdatesComponent },
-  { path: "category-details", component: CategoryDetailsComponent },
+  { path: "category-details/:id", component: CategoryDetailsComponent },
 
   { path: "feedback", component: FeedbackComponent },
   { path: "feedback-update", component: FeedbackUpdatesComponent },
-  { path: "feedback-details", component: FeedbackDetailsComponent },
+  { path: "feedback-details/:id", component: FeedbackDetailsComponent },
 ];

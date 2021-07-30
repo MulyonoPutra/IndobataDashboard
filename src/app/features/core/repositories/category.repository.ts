@@ -9,6 +9,8 @@ export abstract class CategoryRepository {
 
   abstract addCategory(categories: Category): Observable<any>;
 
+  abstract getCategoryById(id: number): Observable<any>;
+
   abstract search(search: Search): Observable<any>;
 
   abstract query(): Observable<EntityArrayResponseType>;

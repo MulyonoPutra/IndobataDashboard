@@ -29,6 +29,10 @@ export class CategoryService extends CategoryRepository {
     );
   }
 
+  getCategoryById(id: number): Observable<any> {
+    return this.categoryRepository.getCategoryById(id);
+  }
+
   search(search: Search): Observable<any> {
     throw new Error("Method not implemented.");
   }

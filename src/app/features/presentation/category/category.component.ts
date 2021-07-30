@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Category } from '../../core/domain/entities/category';
+import { Category, ICategory } from '../../core/domain/entities/category';
 import { Product } from '../../core/domain/entities/product';
 import { CategoryRepository } from '../../core/repositories/category.repository';
 
@@ -13,6 +13,8 @@ export class CategoryComponent implements OnInit {
   public currentCategoryId: number = 1;
 
   public categories: Category[] = [];
+
+  public category: Category;
 
   public product: Product;
 
@@ -34,6 +36,10 @@ export class CategoryComponent implements OnInit {
     });
   }
 
+  trackId(index: number, item: ICategory): number {
+    return item.id!;
+  }
+
   handleProductByCategory() {
     const hasCategoryId: boolean =
       this.activatedRoute.snapshot.paramMap.has("id");
@@ -46,9 +52,9 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  postDetailsRoute(products: any): void {
-    this.product = products;
-    this.router.navigateByUrl("/category-details/" + products.id);
+  categoryDetailsRoute(category: any): void {
+    this.category = category;
+    this.router.navigateByUrl("/category-details/" + category.id);
   }
 
   confirmDelete(id: number): void {

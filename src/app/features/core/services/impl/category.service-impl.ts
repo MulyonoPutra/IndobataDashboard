@@ -4,7 +4,7 @@ import {
   HttpResponse,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, throwError as observableThrowError } from "rxjs";
+import { first, mergeMap, Observable, throwError as observableThrowError } from "rxjs";
 
 import { Search } from "../../domain/dto/search";
 import {
@@ -27,6 +27,13 @@ export class CategoryServiceImpl extends CategoryRepository {
 
   getAllCategory(): Observable<Category[]> {
     return this.http.get<any>(this.baseEndpoint + "api/category");
+  }
+
+  getCategoryById(id: number): Observable<any> {
+    return this.getAllCategory().pipe(
+      mergeMap((result) => result),
+      first((category) => category.id === id)
+    );
   }
 
   addCategory(categories: Category): Observable<any> {
