@@ -4,12 +4,8 @@ import {
   HttpResponse,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {
-  first,
-  mergeMap,
-  Observable,
-  throwError as observableThrowError,
-} from "rxjs";
+import { first, mergeMap, Observable, throwError as observableThrowError } from "rxjs";
+import { EntityArrayResponseCategoryType, EntityResponseCategoryType } from "../../constants/entity-response.type";
 
 import { Search } from "../../domain/dto/search";
 import {
@@ -21,8 +17,6 @@ import { CategoryRepository } from "../../repositories/category.repository";
 import { isPresent } from "../../utility/operators";
 import { createRequestOption } from "../../utility/request-utils";
 
-export type EntityResponseType = HttpResponse<ICategory>;
-export type EntityArrayResponseType = HttpResponse<Category[]>;
 @Injectable()
 export class CategoryServiceImpl extends CategoryRepository {
   private baseEndpoint = "http://localhost:8080/";
@@ -57,7 +51,7 @@ export class CategoryServiceImpl extends CategoryRepository {
     });
   }
 
-  update(category: Category): Observable<EntityResponseType> {
+  update(category: Category): Observable<EntityResponseCategoryType> {
     return this.http.put<Category>(
       `${this.baseEndpoint}api/category/${
         getCategoryIdentifier(category) as number
@@ -67,13 +61,13 @@ export class CategoryServiceImpl extends CategoryRepository {
     );
   }
 
-  find(id: number): Observable<EntityResponseType> {
+  find(id: number): Observable<EntityResponseCategoryType> {
     return this.http.get<ICategory>(`${this.baseEndpoint}api/category/${id}`, {
       observe: "response",
     });
   }
 
-  query(req?: any): Observable<EntityArrayResponseType> {
+  query(req?: any): Observable<EntityArrayResponseCategoryType> {
     const options = createRequestOption(req);
     return this.http.get<Category[]>(this.baseEndpoint + "api/category", {
       params: options,

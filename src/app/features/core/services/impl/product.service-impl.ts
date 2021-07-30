@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { first, map, mergeMap } from "rxjs/operators";
+import { EntityResponseProductType } from "../../constants/entity-response.type";
 import { Search } from "../../domain/dto/search";
 import { getProductIdentifier, IProduct, Product } from "../../domain/entities/product";
 import { ProductRepository } from "../../repositories/product.repository";
@@ -31,7 +32,7 @@ export class ProductServiceImpl extends ProductRepository {
     return this.http.post(this.baseEndpoint + "api/product", product);
   }
 
-  update(product: Product): Observable<EntityResponseType> {
+  update(product: Product): Observable<EntityResponseProductType> {
     return this.http.put<Product>(
       `${this.baseEndpoint}api/product/${
         getProductIdentifier(product) as number
@@ -41,7 +42,7 @@ export class ProductServiceImpl extends ProductRepository {
     );
   }
 
-  find(id: number): Observable<EntityResponseType> {
+  find(id: number): Observable<EntityResponseProductType> {
     return this.http.get<IProduct>(`${this.baseEndpoint}api/product/${id}`, {
       observe: "response",
     });
@@ -78,4 +79,3 @@ export class ProductServiceImpl extends ProductRepository {
 }
 
 
-export type EntityResponseType = HttpResponse<IProduct>;

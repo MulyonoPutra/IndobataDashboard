@@ -2,11 +2,9 @@ import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Search } from "../domain/dto/search";
-import { Category } from "../domain/entities/category";
 import { IProduct, Product } from "../domain/entities/product";
 import { ProductRepository } from "../repositories/product.repository";
 
-export type EntityArrayResponseType = HttpResponse<Category[]>;
 @Injectable()
 export class ProductService extends ProductRepository {
   constructor(private productRepository: ProductRepository) {

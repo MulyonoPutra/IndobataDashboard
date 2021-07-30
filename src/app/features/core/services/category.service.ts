@@ -1,6 +1,7 @@
 import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { EntityArrayResponseCategoryType, EntityResponseCategoryType } from "../constants/entity-response.type";
 import { Search } from "../domain/dto/search";
 import { Category, ICategory } from "../domain/entities/category";
 import { CategoryRepository } from "../repositories/category.repository";
@@ -19,7 +20,7 @@ export class CategoryService extends CategoryRepository {
     return this.categoryRepository.getAllCategory();
   }
 
-  update(category: ICategory): Observable<EntityResponseType> {
+  update(category: ICategory): Observable<EntityResponseCategoryType> {
     return this.categoryRepository.update(category);
   }
 
@@ -45,11 +46,7 @@ export class CategoryService extends CategoryRepository {
     throw new Error("Method not implemented.");
   }
 
-  query(): Observable<EntityArrayResponseType> {
-    throw new Error("Method not implemented.");
+  query(): Observable<EntityArrayResponseCategoryType> {
+    return this.categoryRepository.query();
   }
 }
-
-
-export type EntityResponseType = HttpResponse<ICategory>;
-export type EntityArrayResponseType = HttpResponse<Category[]>;

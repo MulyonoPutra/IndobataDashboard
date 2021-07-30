@@ -99,7 +99,6 @@ export class ProductUpdatesComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const product = this.createFromForm();
-    this.subscribeToSaveResponse(this.productService.addProduct(product));
     if (product.id !== undefined) {
       this.subscribeToSaveResponse(this.productService.update(product));
     } else {

@@ -1,6 +1,7 @@
 import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { EntityResponseClientsType } from "../constants/entity-response.type";
 import { Search } from "../domain/dto/search";
 import { Clients, IClients } from "../domain/entities/clients";
 import { ClientsRepository } from "../repositories/clients.repository";
@@ -21,7 +22,7 @@ export class ClientsService extends ClientsRepository {
     return this.clientsRepository.getClientsById(id);
   }
 
-  update(clients: IClients): Observable<EntityResponseType> {
+  update(clients: IClients): Observable<EntityResponseClientsType> {
     return this.clientsRepository.update(clients);
   }
 
@@ -34,5 +35,3 @@ export class ClientsService extends ClientsRepository {
   }
 }
 
-
-export type EntityResponseType = HttpResponse<IClients>;

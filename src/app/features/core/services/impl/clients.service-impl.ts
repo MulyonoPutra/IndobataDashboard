@@ -1,12 +1,14 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { first, mergeMap, Observable } from "rxjs";
+import { EntityResponseClientsType } from "../../constants/entity-response.type";
 import { Search } from "../../domain/dto/search";
 import { Clients, getClientsIdentifier, IClients } from "../../domain/entities/clients";
 import { ClientsRepository } from "../../repositories/clients.repository";
 
 @Injectable()
 export class ClientsServiceImpl extends ClientsRepository {
+  
   private baseEndpoint = "http://localhost:8080/";
   public clients: Clients;
 
@@ -22,7 +24,7 @@ export class ClientsServiceImpl extends ClientsRepository {
     return this.http.post(this.baseEndpoint + "api/clients", clients);
   }
 
-  update(clients: Clients): Observable<EntityResponseType> {
+  update(clients: Clients): Observable<EntityResponseClientsType> {
     return this.http.put<Clients>(
       `${this.baseEndpoint}api/clients/${
         getClientsIdentifier(clients) as number
@@ -32,7 +34,7 @@ export class ClientsServiceImpl extends ClientsRepository {
     );
   }
 
-  find(id: number): Observable<EntityResponseType> {
+  find(id: number): Observable<EntityResponseClientsType> {
     return this.http.get<IClients>(`${this.baseEndpoint}api/clients/${id}`, {
       observe: "response",
     });
@@ -55,6 +57,3 @@ export class ClientsServiceImpl extends ClientsRepository {
     });
   }
 }
-
-
-export type EntityResponseType = HttpResponse<IClients>;
