@@ -25,3 +25,7 @@ export class IProduct implements Product {
     public category_post?: Category | null,
   ) {}
 }
+
+export function getProductIdentifier(product: IProduct): number | undefined {
+  return product.id;
+}

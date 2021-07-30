@@ -147,7 +147,7 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <a
-            [routerLink]="['/product-update']"
+            [routerLink]="['/product-new']"
             class="btn btn-success btn-lg active justify-content-end"
             role="button"
             aria-pressed="true"
@@ -183,7 +183,6 @@
                       data-cy="entityDetailsButton"
                       (click)="productDetailsRoute(product)"
                     >
-                      <fa-icon icon="eye"></fa-icon>
                       <span class="d-none d-md-inline">View</span>
                     </button>
 
@@ -191,9 +190,8 @@
                       type="submit"
                       class="btn btn-primary btn-sm"
                       data-cy="entityEditButton"
-                      [routerLink]="['/category', category.id, 'edit']"
+                      [routerLink]="['/product-update', product.id, 'edit']"
                     >
-                      <fa-icon icon="pencil-alt"></fa-icon>
                       <span class="d-none d-md-inline">Edit</span>
                     </button>
 
@@ -203,7 +201,6 @@
                       class="btn btn-danger btn-sm"
                       data-cy="entityDeleteButton"
                     >
-                      <fa-icon icon="times"></fa-icon>
                       <span class="d-none d-md-inline">Delete</span>
                     </button>
                   </div>

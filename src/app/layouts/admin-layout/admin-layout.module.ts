@@ -35,6 +35,7 @@ import { ProductRepository } from "src/app/features/core/repositories/product.re
 import { ProductServiceImpl } from "src/app/features/core/services/impl/product.service-impl";
 import { CategoryRoutingResolveService } from "src/app/features/core/services/route/category-routing-resolve.service";
 import { ClientsRoutingResolveService } from "src/app/features/core/services/route/clients-routing-resolve.service";
+import { ProductRoutingResolveService } from "src/app/features/core/services/route/product-routing-resolve.service";
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -70,8 +71,10 @@ import { ClientsRoutingResolveService } from "src/app/features/core/services/rou
   providers: [
     { provide: CategoryServiceImpl },
     { provide: ClientsServiceImpl },
+    { provide: ProductServiceImpl },
     { provide: CategoryRoutingResolveService },
     { provide: ClientsRoutingResolveService },
+    { provide: ProductRoutingResolveService },
     { provide: CategoryRepository, useClass: CategoryServiceImpl },
     { provide: ClientsRepository, useClass: ClientsServiceImpl },
     { provide: FeedbackRepository, useClass: FeedbackServiceImpl },

@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { first, map, mergeMap } from "rxjs/operators";
 import { Search } from "../../domain/dto/search";
-import { Product } from "../../domain/entities/product";
+import { getProductIdentifier, IProduct, Product } from "../../domain/entities/product";
 import { ProductRepository } from "../../repositories/product.repository";
 
 @Injectable()
@@ -31,8 +31,20 @@ export class ProductServiceImpl extends ProductRepository {
     return this.http.post(this.baseEndpoint + "api/product", product);
   }
 
-  updateProduct(product: Product): Observable<any> {
-    throw new Error("Method not implemented.");
+  update(product: Product): Observable<EntityResponseType> {
+    return this.http.put<Product>(
+      `${this.baseEndpoint}api/product/${
+        getProductIdentifier(product) as number
+      }`,
+      product,
+      { observe: "response" }
+    );
+  }
+
+  find(id: number): Observable<EntityResponseType> {
+    return this.http.get<IProduct>(`${this.baseEndpoint}api/product/${id}`, {
+      observe: "response",
+    });
   }
 
   getProductById(id: number): Observable<any> {
@@ -64,3 +76,6 @@ export class ProductServiceImpl extends ProductRepository {
     });
   }
 }
+
+
+export type EntityResponseType = HttpResponse<IProduct>;

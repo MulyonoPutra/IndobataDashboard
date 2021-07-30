@@ -18,6 +18,7 @@ import { FeedbackUpdatesComponent } from "src/app/features/presentation/feedback
 import { FeedbackDetailsComponent } from "src/app/features/presentation/feedback/feedback-details/feedback-details.component";
 import { CategoryRoutingResolveService } from "src/app/features/core/services/route/category-routing-resolve.service";
 import { ClientsRoutingResolveService } from "src/app/features/core/services/route/clients-routing-resolve.service";
+import { ProductRoutingResolveService } from "src/app/features/core/services/route/product-routing-resolve.service";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -32,6 +33,7 @@ export const AdminLayoutRoutes: Routes = [
       clients: ClientsRoutingResolveService,
     },
   },
+
   {
     path: "clients-update/:id/edit",
     component: ClientsUpdatesComponent,
@@ -39,6 +41,7 @@ export const AdminLayoutRoutes: Routes = [
       clients: ClientsRoutingResolveService,
     },
   },
+  
   {
     path: "clients-new",
     component: ClientsUpdatesComponent,
@@ -54,9 +57,34 @@ export const AdminLayoutRoutes: Routes = [
     },
   },
 
-  { path: "product", component: ProductComponent },
-  { path: "product-update/:id/edit", component: ProductUpdatesComponent },
-  { path: "product-details/:id", component: ProductDetailsComponent },
+  {
+    path: "product",
+    component: ProductComponent,
+    resolve: {
+      product: ProductRoutingResolveService,
+    },
+  },
+  {
+    path: "product-update/:id/edit",
+    component: ProductUpdatesComponent,
+    resolve: {
+      product: ProductRoutingResolveService,
+    },
+  },
+  {
+    path: "product-new",
+    component: ProductUpdatesComponent,
+    resolve: {
+      product: ProductRoutingResolveService,
+    },
+  },
+  {
+    path: "product-details/:id",
+    component: ProductDetailsComponent,
+    resolve: {
+      product: ProductRoutingResolveService,
+    },
+  },
 
   {
     path: "category",

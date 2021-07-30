@@ -46,7 +46,6 @@ export class ProductUpdatesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadRelationshipsOptions();
     this.activatedRoute.data.subscribe(({ product }) => {
       this.updateForm(product);
 
@@ -101,11 +100,11 @@ export class ProductUpdatesComponent implements OnInit {
     this.isSaving = true;
     const product = this.createFromForm();
     this.subscribeToSaveResponse(this.productService.addProduct(product));
-    // if (post.id !== undefined) {
-    //   this.subscribeToSaveResponse(this.postService.updatePost(post));
-    // } else {
-    //   this.subscribeToSaveResponse(this.postService.addPost(post));
-    // }
+    if (product.id !== undefined) {
+      this.subscribeToSaveResponse(this.productService.update(product));
+    } else {
+      this.subscribeToSaveResponse(this.productService.addProduct(product));
+    }
   }
 
   protected subscribeToSaveResponse(
