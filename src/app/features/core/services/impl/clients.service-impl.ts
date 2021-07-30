@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { first, mergeMap, Observable } from "rxjs";
 import { Search } from "../../domain/dto/search";
 import { Clients } from "../../domain/entities/clients";
 import { ClientsRepository } from "../../repositories/clients.repository";
@@ -31,7 +31,10 @@ export class ClientsServiceImpl extends ClientsRepository {
   }
 
   getClientsById(id: number): Observable<any> {
-    throw new Error("Method not implemented.");
+    return this.getAllClients().pipe(
+      mergeMap((result) => result),
+      first((clients) => clients.id === id)
+    );
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {

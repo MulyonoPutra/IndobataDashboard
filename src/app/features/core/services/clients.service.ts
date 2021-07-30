@@ -2,7 +2,6 @@ import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Search } from "../domain/dto/search";
-import { Category } from "../domain/entities/category";
 import { Clients } from "../domain/entities/clients";
 import { ClientsRepository } from "../repositories/clients.repository";
 
