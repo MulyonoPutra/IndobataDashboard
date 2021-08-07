@@ -10,7 +10,6 @@ import { ProductRepository } from 'src/app/features/core/repositories/product.re
   styleUrls: ["./product-details.component.css"],
 })
 export class ProductDetailsComponent implements OnInit {
-
   public product: Product;
 
   constructor(
@@ -19,7 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getProductById()
+    this.getProductById();
   }
 
   getProductById(): void {
@@ -28,5 +27,9 @@ export class ProductDetailsComponent implements OnInit {
       this.product = data;
       console.log(data);
     });
+  }
+
+  previousState(): void {
+    window.history.back();
   }
 }

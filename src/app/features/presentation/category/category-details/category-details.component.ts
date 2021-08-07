@@ -10,10 +10,12 @@ import { CategoryRepository } from 'src/app/features/core/repositories/category.
   styleUrls: ["./category-details.component.css"],
 })
 export class CategoryDetailsComponent implements OnInit {
-
   public category: Category;
 
-  constructor(private route: ActivatedRoute, private categoryService: CategoryRepository) {}
+  constructor(
+    private route: ActivatedRoute,
+    private categoryService: CategoryRepository
+  ) {}
 
   ngOnInit(): void {
     this.getCategoryById();
@@ -25,5 +27,9 @@ export class CategoryDetailsComponent implements OnInit {
       this.category = data;
       console.log(data);
     });
+  }
+
+  previousState(): void {
+    window.history.back();
   }
 }

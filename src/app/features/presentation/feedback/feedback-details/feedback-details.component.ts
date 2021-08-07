@@ -9,7 +9,6 @@ import { FeedbackRepository } from 'src/app/features/core/repositories/feedback.
   styleUrls: ["./feedback-details.component.css"],
 })
 export class FeedbackDetailsComponent implements OnInit {
-
   public feedback: Feedback;
 
   constructor(
@@ -27,5 +26,9 @@ export class FeedbackDetailsComponent implements OnInit {
       this.feedback = data;
       console.log(data);
     });
+  }
+
+  previousState(): void {
+    window.history.back();
   }
 }

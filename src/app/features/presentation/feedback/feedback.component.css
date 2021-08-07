@@ -1,0 +1,6 @@
+.hidden {
+    max-width: 20em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
